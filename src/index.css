@@ -3,6 +3,8 @@
 body {
   margin: 0;
   font-family: 'Lexend Deca', sans-serif;
+  background-color: #F2F2F2;
+  box-sizing: border-box;
 }
 
 ::-webkit-input-placeholder {

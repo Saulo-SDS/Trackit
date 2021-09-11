@@ -1,29 +1,57 @@
+import {
+    CircularProgressbar,
+    buildStyles
+} from "react-circular-progressbar";
+import 'react-circular-progressbar/dist/styles.css';
+
 import styled from "styled-components";
 
 export default function Footer() {
     return (
         <FooterComponent>
             <p>Hábitos</p>
+            <InfoProgress>
+               <CircularProgressbar
+                    value={66}
+                    text={`Hoje`}
+                    background
+                    backgroundPadding={6}
+                    styles={buildStyles({
+                        backgroundColor: "#52B6FF",
+                        textColor: "#fff",
+                        pathColor: "#fff",
+                        trailColor: "transparent"
+                })}/>           
+            </InfoProgress>
+           
             <p>Histórico</p>
         </FooterComponent>
     );
 }
 
-
-export const FooterComponent= styled.div`
-    width: 375px;
+const FooterComponent = styled.div`
+    width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     position: fixed;
     bottom: 0;
-    right: 0;
     left: 0;
-    padding: 0 31px 0 36px;
-    background-color: #FFFFFF;
+    background-color: #000;
     p {
         font-size: 18px;
         color: #52B6FF;
     }
 `;
+
+const InfoProgress = styled.div`
+    height: 91px;
+    width: 91px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    border-radius: 50%;
+    padding-bottom: 30px;
+`;
+
