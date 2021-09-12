@@ -1,9 +1,13 @@
 import styled from "styled-components";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext";
 import Footer from "../Footer/Footer";
 import Top from "../Top/Top";
 import HabitSituation from "./HabitSituation";
 
 export default function Today() {
+    const value = useContext(UserContext);
+    console.log(value)
     return (
         <>
             <Top/>

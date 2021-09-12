@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Top from "../Top/Top";
 import Footer from "../Footer/Footer";
-import { Input } from "../Share/Style";
 
 export default function Habits() {
     return (

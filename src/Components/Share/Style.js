@@ -28,15 +28,17 @@ const Button = styled.button`
     border: none;
     margin-bottom: 25px;
     background-color: #52B6FF;
+    opacity: ${props => props.opacity};
 `;
 
-const Form = styled.div`
+const Form = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    a {
+    p {
         color: #52B6FF;
         font-size: 13.98px;
+        text-decoration: underline;
     }
 `;
 
