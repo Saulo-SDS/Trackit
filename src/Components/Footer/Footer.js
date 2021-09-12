@@ -38,7 +38,7 @@ const FooterComponent = styled.div`
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: #000;
+    background-color: #fff;
     p {
         font-size: 18px;
         color: #52B6FF;

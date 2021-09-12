@@ -4,6 +4,7 @@ import Top from "./Components/Top/Top";
 import Login from "./Components/Login/Login"
 import Register from "./Components/Register/Register";
 import Habits from "./Components/Habits/Habits";
+import Today from "./Components/Today/Today";
 
 function App() {
   
@@ -11,7 +12,8 @@ function App() {
     <>
     {/*<Login/>*/}
     {/*<Register/>*/}
-    {<Habits/>}
+    {/*<Habits/>*/}
+    {<Today/>}
     </>
   );
 }
