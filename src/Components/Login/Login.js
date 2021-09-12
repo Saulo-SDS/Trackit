@@ -2,9 +2,9 @@ import Logo from "../Share/logo.png"
 import { useState, useContext } from "react";
 import { useHistory } from "react-router";
 import { Button, Form, Input, LogoImg } from "../Share/Style";
-import Loader from 'react-loader-spinner';
 import { getLogin } from "../Service/Api";
 import { UserContext } from "../Context/UserContext";
+import Loader from 'react-loader-spinner';
 
 export default function Login() {
 
@@ -17,23 +17,23 @@ export default function Login() {
     function Acess(event) {
         
         event.preventDefault();
+        setLoading(true);
         const body = {
             email: email,
             password: password
         }
 
-        setLoading(true);
-        getLogin(body).then((resp) => {
-            console.log(resp);
-            console.log(email)
-            console.log(password)
+        getLogin(body).
+        then((resp) => {
             setUser(resp.data);
             history.push("/hoje");
-        }).catch((resp) => {
+        }).
+        catch((resp) => {
             alert("Dados inválidos");
             setLoading(false);
         });
     }
+    
     return (
         <Form onSubmit={Acess}>
             <LogoImg src={Logo} alt="Logo"/>
