@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { CheckmarkOutline } from 'react-ionicons'
 
-export default function HabitSituation() {
-
+export default function HabitSituation({data}) {
     return (
         <Container>
-            <h3>Ler 1 capítulo de livro</h3>
+            <h3>{data.name}</h3>
             <button>
                 <CheckmarkOutline
                     color={'#ffffff'} 
@@ -14,8 +13,8 @@ export default function HabitSituation() {
                 />
             </button>
             <Records>
-                <p>Sequência atual: <span>3 dias</span></p>
-                <p>Seu recorde: <span>5 dias</span></p>                    
+                <p>Sequência atual: <span>{data.currentSequence} dias</span></p>
+                <p>Seu recorde: <span>{data.highestSequence} dias</span></p>                    
             </Records>
        </Container>
     );

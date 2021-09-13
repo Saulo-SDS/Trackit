@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
 import Footer from "../Footer/Footer";
 import Top from "../Top/Top";
@@ -12,6 +12,8 @@ import { getHabitsToday } from "../Service/Api";
 export default function Today() {
 
     const userData = useContext(UserContext);
+    const [data, setData] = useState([]);
+
     console.log(userData.user.token )
 
     const config = {
@@ -20,12 +22,17 @@ export default function Today() {
         }
     }
 
-    getHabitsToday(config).then(resp => {
-        console.log(resp);
-    }).catch(err => {
-        console.log("errr")
-    });
-    
+    useEffect(() => {
+
+        getHabitsToday(config).then(resp => {
+            console.log(resp);
+            setData(resp.data);
+        }).catch(err => {
+            console.log("errr")
+        });
+    }, [])
+
+    console.log(data)
 
     return (
         <>
@@ -33,8 +40,7 @@ export default function Today() {
             <Container>
                 <Date>{`${dayjs().locale('pt-br').format("dddd")}, ${dayjs().format("D")}/${dayjs().format("MM")}`}</Date>
                 <Status><p>Nenhum hábito concluído ainda</p></Status>
-                <HabitSituation />
-                <HabitSituation />
+                {data.length > 0 ? data.map((data) => <HabitSituation key={data.id} data={data}/>) : ""}
             </Container>
             <Footer />
 
