@@ -1,12 +1,31 @@
 import styled from "styled-components";
 import { TrashOutline } from 'react-ionicons'
+import { deleteHabit } from "../Service/Api";
+import { useContext } from "react";
+import { UserContext } from "../Context/UserContext";
 
 
-export default function Habit({name, selectedDays}) {
-    
+export default function Habit({id, name, selectedDays, loadHabits}) {
+
+    const userData = useContext(UserContext);
     const day = ['D','S','T','Q','Q','S','S'];
-    console.log(selectedDays)
-   
+    
+    function removeHabit() { 
+        if(window.confirm("Você realmente quer apagar esse hábito?")){
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${userData.user.token}`
+                }
+            }
+            deleteHabit(id, config).then(resp => {
+                console.log("sucess");
+                loadHabits();
+            }).catch(err => {
+                alert("errr")
+            });
+        }
+    }
+
     return (
         <Container>
             <h3>{name}</h3>
@@ -15,6 +34,7 @@ export default function Habit({name, selectedDays}) {
                     color={'#00000'} 
                     height="18px"
                     width="20px"
+                    onClick={removeHabit}
                 />
             </span>
             <div>

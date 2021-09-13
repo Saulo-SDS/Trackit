@@ -26,11 +26,16 @@ function postHabit(body, autorization){
     return promise;
 }
 
+function deleteHabit(id, autorization) {
+    const promise = axios.delete(`${URL_SERVER}habits/${id}`, autorization);
+    return promise;
+}
 
 export {
     getLogin,
     postRegister,
     getHabitsToday,
     getHabits,
-    postHabit
+    postHabit,
+    deleteHabit
 }

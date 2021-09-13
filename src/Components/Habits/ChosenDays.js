@@ -21,7 +21,10 @@ export default function ChosenDays({day, id, selecteds,setSelecteds, loading}) {
             border={enable ? "#CFCFCF" : "#D4D4D4"}
             color={enable ? "#fff" : "#DBDBDB"}
             onClick={selectDay} 
-            disabled={loading}>{day}</Day>
+            disabled={loading}
+        >
+            {day}
+        </Day>
     );
 }
 

@@ -5,6 +5,8 @@ import { UserContext } from "../Context/UserContext";
 import { postHabit } from "../Service/Api";
 import { Button, Form, Input } from "../Share/Style";
 import ChosenDays from "./ChosenDays";
+import Loader from 'react-loader-spinner';
+
 
 export default function CreateHabit({setCreate, loadHabits}) {
 
@@ -15,11 +17,12 @@ export default function CreateHabit({setCreate, loadHabits}) {
     const day = ['D','S','T','Q','Q','S','S'];
 
     function saveHabit() {
+        setLoading(true);
         const data = {
             name: name,
             days: selecteds
         }
-
+        
         const config = {
             headers: {
                 "Authorization": `Bearer ${userData.user.token}`
@@ -29,12 +32,12 @@ export default function CreateHabit({setCreate, loadHabits}) {
         postHabit(data, config).then((resp) => {
             setCreate(false);
             loadHabits();
-        }).catch((resp) => {
+        }).catch((err) => {
             alert("Erro");
             setLoading(false);
         });
     }
-
+    
     return (
         <Container>
             <Form>
@@ -50,7 +53,9 @@ export default function CreateHabit({setCreate, loadHabits}) {
             </div>
             <Buttons>
                 <Button height="35px" width="84px" fontSize="16px" background="#fff" color="#52B6FF" disabled={loading} onClick={() => setCreate(false)}>Cancelar</Button>
-                <Button height="35px" width="84px" fontSize="16px" disabled={loading} onClick={saveHabit}>Salvar</Button>
+                <Button height="35px" width="84px" fontSize="16px" disabled={loading} opacity={loading ? 0.7 : 1} onClick={saveHabit}>
+                    {!loading ? "Salvar" : <Loader type="ThreeDots" color="#FFFFFF" height={13} width={80} />}
+                </Button>
             </Buttons>
        </Container> 
     );

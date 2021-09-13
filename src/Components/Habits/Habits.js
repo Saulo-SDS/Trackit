@@ -10,7 +10,6 @@ import CreateHabit from "./CreateHabit";
 export default function Habits() {
 
     const userData = useContext(UserContext);
-    console.log(userData.user.token );
     const [data, setData] = useState([]);
     const [create, setCreate] = useState(false);
 
@@ -22,14 +21,12 @@ export default function Habits() {
             }
         }
         getHabits(config).then(resp => {
-            console.log(resp);
             setData(resp.data);
         }).catch(err => {
-            console.log("errr")
+            alert("errr")
         });
     }
     useEffect (loadHabits, []);
-    console.log("habits: ", data)
 
     return (
         <>
@@ -40,7 +37,7 @@ export default function Habits() {
                     <button onClick={() => setCreate(true)}>+</button>
                 </Infos>
                 {create ? <CreateHabit setCreate={setCreate} loadHabits={loadHabits}/> : ""}
-                {data.length > 0 ? data.map(({id, name, days}, index) => ( <Habit key={id} id={index} name={name} selectedDays={days}/>)) :
+                {data.length > 0 ? data.map(({id, name, days}, index) => ( <Habit key={id} id={id} name={name} selectedDays={days} loadHabits={loadHabits}/>)) :
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}       
             </Container>
             <Footer />
