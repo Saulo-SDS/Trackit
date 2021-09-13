@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Top from "../Today/Top/Top";
+import Top from "../Top/Top";
 import Menu from "../Menu/Menu";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Context/UserContext";
@@ -32,12 +32,12 @@ export default function Habits() {
         <>
             <Top />
             <Container>
-                <Infos>
+                <TopInfos>
                     <h2>Meus hábitos</h2>
                     <button onClick={() => setCreate(true)}>+</button>
-                </Infos>
+                </TopInfos>
                 {create ? <CreateHabit setCreate={setCreate} loadHabits={loadHabits}/> : ""}
-                {data.length > 0 ? data.map(({id, name, days}, index) => ( <Habit key={id} id={id} name={name} selectedDays={days} loadHabits={loadHabits}/>)) :
+                {data.length > 0 ? data.map(({id, name, days}) => ( <Habit key={id} id={id} name={name} selectedDays={days} loadHabits={loadHabits}/>)) :
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}       
             </Container>
             <Menu value={66}/>
@@ -60,7 +60,7 @@ const Container = styled.div`
     }
 `;
 
-const Infos = styled.div`
+const TopInfos = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;

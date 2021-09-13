@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { CheckmarkOutline } from 'react-ionicons'
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 import { releaseState } from "../Service/Api";
 
 export default function HabitSituation({data, renderToday}) {
 
     const userData = useContext(UserContext);
-
     function release() {
         const config = {
             headers: {

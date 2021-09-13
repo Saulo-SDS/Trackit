@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Context/UserContext";
+import Top from "../Top/Top";
 import Menu from "../Menu/Menu";
-import Top from "./Top/Top";
 import HabitSituation from "./HabitSituation";
 import dayjs from "dayjs"
 import "dayjs/locale/pt-br"
@@ -40,7 +40,7 @@ export default function Today() {
                 </Status>
                 {data.length > 0 ? data.map((data) => <HabitSituation key={data.id} data={data} renderToday={renderToday}/>) : ""}
             </Container>
-            <Menu value={(habitsDone.length/data.length*100).toFixed(0)}/>
+            <Menu value={ data.length > 0 ? (habitsDone.length/data.length*100).toFixed(0) : "0"}/>
 
         </>
     );

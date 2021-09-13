@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 import styled from "styled-components";
 import Trackit from "./trackit.svg";
 
@@ -38,6 +38,6 @@ const Logo = styled.img`
 const ProfileImg = styled.img`
     width: 51px;
     height: 51px;
-    padding-right: 18px;
+    margin-right: 18px;
     border-radius: 50%;
 `;

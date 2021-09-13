@@ -26,7 +26,6 @@ export default function Menu({value}) {
                     })}
                 />           
             </InfoProgress>
-           
             <p onClick={() => history.push("/historico")}>Histórico</p>
         </MenuComponent>
     );

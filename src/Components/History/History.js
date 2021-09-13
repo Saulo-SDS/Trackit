@@ -1,18 +1,16 @@
 import styled from "styled-components";
-import { useState } from "react";
-import Top from "../Today/Top/Top";
+import Top from "../Top/Top";
 import Menu from "../Menu/Menu";
-
 export default function History() {
-
+   
     return (
         <>
             <Top/>
             <Container>
-                <Infos>
+                <Info>
                     <h2>Histórico</h2>
-                </Infos>
-                <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>    
+                </Info>
+                <p>Em breve você poderá ver o histórico dos seus hábitos aqui!</p>
             </Container>
             <Menu value={66}/>
         </>
@@ -33,7 +31,7 @@ const Container = styled.div`
     }
 `;
 
-const Infos = styled.div`
+const Info = styled.div`
     display: flex;
     align-items: center;
     h2 {

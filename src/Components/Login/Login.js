@@ -19,7 +19,6 @@ export default function Login() {
         const data = localStorage.getItem("userInfo");
         if(data) {
             setUser(JSON.parse(data));
-            console.log("existe: ",data);
             history.push("/hoje");
         }
     }
@@ -27,24 +26,26 @@ export default function Login() {
     function Acess(event) {
         
         event.preventDefault();
-        setLoading(true);
-        const body = {
-            email: email,
-            password: password
+        if(validateEmail(email)){
+            setLoading(true);
+            const body = {
+                email: email,
+                password: password
+            }
+
+            getLogin(body).then((resp) => {
+                setUser(resp.data);
+                const data = JSON.stringify(resp.data);
+                localStorage.setItem("userInfo", data);
+                history.push("/hoje");
+            }).catch((resp) => {
+                alert("Dados inválidos");
+                setLoading(false);
+            });
+        }else{
+            alert("Insira um email válido!")
         }
-
-        getLogin(body).then((resp) => {
-            setUser(resp.data);
-            const data = JSON.stringify(resp.data);
-            localStorage.setItem("userInfo", data);
-            history.push("/hoje");
-        }).catch((resp) => {
-            alert("Dados inválidos");
-            setLoading(false);
-        });
     }
-    //localStorage.clear()
-
     loadLogin();
 
     return (
