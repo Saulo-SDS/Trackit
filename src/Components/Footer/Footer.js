@@ -3,13 +3,15 @@ import {
     buildStyles
 } from "react-circular-progressbar";
 import 'react-circular-progressbar/dist/styles.css';
-
+import { useHistory } from "react-router";
 import styled from "styled-components";
 
 export default function Footer() {
+    
+    const history = useHistory();
     return (
         <FooterComponent>
-            <p>Hábitos</p>
+            <p onClick={() => history.push("/habitos")}>Hábitos</p>
             <InfoProgress>
                <CircularProgressbar
                     value={66}

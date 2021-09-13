@@ -4,15 +4,34 @@ import { UserContext } from "../Context/UserContext";
 import Footer from "../Footer/Footer";
 import Top from "../Top/Top";
 import HabitSituation from "./HabitSituation";
+import dayjs from "dayjs"
+import "dayjs/locale/pt-br"
+import { getHabitsToday } from "../Service/Api";
+
 
 export default function Today() {
-    const value = useContext(UserContext);
-    console.log(value)
+
+    const userData = useContext(UserContext);
+    console.log(userData.user.token )
+
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData.user.token}`
+        }
+    }
+
+    getHabitsToday(config).then(resp => {
+        console.log(resp);
+    }).catch(err => {
+        console.log("errr")
+    });
+    
+
     return (
         <>
             <Top/>
             <Container>
-                <Date>Segunda, 17/05</Date>
+                <Date>{`${dayjs().locale('pt-br').format("dddd")}, ${dayjs().format("D")}/${dayjs().format("MM")}`}</Date>
                 <Status><p>Nenhum hábito concluído ainda</p></Status>
                 <HabitSituation />
                 <HabitSituation />

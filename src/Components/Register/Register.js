@@ -23,12 +23,10 @@ export default function Register() {
             password: password
         }
 
-        postRegister(body).
-        then(resp => {
+        postRegister(body).then(resp => {
             console.log(resp);
             history.push("/");
-        }).
-        catch(err => {
+        }).catch(err => {
             alert("Erro tente novamente");
             setLoading(false);
         });

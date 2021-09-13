@@ -23,12 +23,10 @@ export default function Login() {
             password: password
         }
 
-        getLogin(body).
-        then((resp) => {
+        getLogin(body).then((resp) => {
             setUser(resp.data);
             history.push("/hoje");
-        }).
-        catch((resp) => {
+        }).catch((resp) => {
             alert("Dados inválidos");
             setLoading(false);
         });

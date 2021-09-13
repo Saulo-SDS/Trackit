@@ -10,7 +10,7 @@ export default function Top() {
     );
 }
 
-export const TopBar = styled.header`
+const TopBar = styled.header`
     height: 70px;
     width: 100%;
     display: flex;
@@ -24,13 +24,13 @@ export const TopBar = styled.header`
     z-index: 2;
 `;
 
-export const Logo = styled.img`
+const Logo = styled.img`
     width: 97px;
     height: 49px;
     padding-left: 18px;
 `;
 
-export const ProfileImg = styled.img`
+const ProfileImg = styled.img`
     width: 51px;
     height: 51px;
     padding-right: 18px;

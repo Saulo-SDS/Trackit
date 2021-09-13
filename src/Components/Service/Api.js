@@ -11,7 +11,26 @@ function postRegister(body) {
     return promise;
 }
 
+function getHabitsToday(autorization) {
+    const promise = axios.get(`${URL_SERVER}habits/today`, autorization);
+    return promise;
+}
+
+function getHabits(autorization) {
+    const promise = axios.get(`${URL_SERVER}habits`, autorization);
+    return promise;
+}
+
+function postHabit(body, autorization){
+    const promise = axios.post(`${URL_SERVER}habits`, body, autorization);
+    return promise;
+}
+
+
 export {
     getLogin,
-    postRegister
+    postRegister,
+    getHabitsToday,
+    getHabits,
+    postHabit
 }

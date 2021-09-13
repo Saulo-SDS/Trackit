@@ -17,17 +17,17 @@ const LogoImg = styled.img`
 `;
 
 const Button = styled.button`
-    width: 303px;
-    height: 45px;
+    width: ${props => props.width ? props.width : "303px"};
+    height: ${props => props.height ? props.height : "45px"};
     font-family: Lexend Deca;
-    font-size: 21px;
+    font-size: ${props => props.fontSize ? props.fontSize : "21px"};
     font-weight: 400;
     line-height: 26px;
-    color: #FFFFFF;
+    color: ${props => props.color ? props.color : "#fff"};
     border-radius: 5px;
     border: none;
     margin-bottom: 25px;
-    background-color: #52B6FF;
+    background-color: ${props => props.background ? props.background : "#52B6FF"};
     opacity: ${props => props.opacity};
 `;
 
