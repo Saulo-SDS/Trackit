@@ -1,20 +1,49 @@
 import styled from "styled-components";
 import { CheckmarkOutline } from 'react-ionicons'
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../Context/UserContext";
+import { releaseState } from "../Service/Api";
 
-export default function HabitSituation({data}) {
+export default function HabitSituation({data, renderToday}) {
+
+    const userData = useContext(UserContext);
+
+    function release() {
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${userData.user.token}`
+            }
+        }
+
+        if(data.done) {
+            releaseState("uncheck", data.id, config).then(resp => {
+                renderToday();
+            }).catch(err => {
+                console.log("errr")
+            });
+        }else{
+            releaseState("check", data.id, config).then(resp => {
+                renderToday();
+            }).catch(err => {
+                console.log("errr")
+            });
+        }
+    }
+
     return (
-        <Container>
+        <Container color={data.done ? "#8FC549" : "#EBEBEB" }>
             <h3>{data.name}</h3>
             <button>
                 <CheckmarkOutline
                     color={'#ffffff'} 
                     height="60px"
                     width="50px"
+                    onClick={release}
                 />
             </button>
-            <Records>
-                <p>Sequência atual: <span>{data.currentSequence} dias</span></p>
-                <p>Seu recorde: <span>{data.highestSequence} dias</span></p>                    
+            <Records color={data.currentSequence === data.highestSequence && data.done ? "#8FC549" : "#666666"}>
+                <p>Sequência atual: <span>{data.currentSequence} {data.currentSequence !== 1 ? "dias" : "dia"}</span></p>
+                <p>Seu recorde: <span>{data.highestSequence} {data.highestSequence !== 1 ? "dias" : "dia"}</span></p>                    
             </Records>
        </Container>
     );
@@ -39,7 +68,7 @@ const Container = styled.div`
     button {
         width: 69px;
         height: 69px;
-        background-color: #EBEBEB;
+        background-color: ${props => props.color};
         position: absolute;
         top: 13px;
         right: 13px;
@@ -56,5 +85,8 @@ const Records = styled.div`
         font-weight: 400;
         line-height: 16px;
         font-size: 13px;
+    }
+    span {
+        color: ${props => props.color};
     }
 `;

@@ -31,11 +31,17 @@ function deleteHabit(id, autorization) {
     return promise;
 }
 
+function releaseState(type, id, autorization){
+    const promise = axios.post(`${URL_SERVER}habits/${id}/${type}`, {}, autorization);
+    return promise;
+}
+
 export {
     getLogin,
     postRegister,
     getHabitsToday,
     getHabits,
     postHabit,
-    deleteHabit
+    deleteHabit,
+    releaseState
 }

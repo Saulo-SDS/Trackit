@@ -13,36 +13,34 @@ export default function Today() {
 
     const userData = useContext(UserContext);
     const [data, setData] = useState([]);
-
-    console.log(userData.user.token )
-
     const config = {
         headers: {
             "Authorization": `Bearer ${userData.user.token}`
         }
     }
 
-    useEffect(() => {
-
+    function renderToday() {
         getHabitsToday(config).then(resp => {
-            console.log(resp);
             setData(resp.data);
         }).catch(err => {
-            console.log("errr")
+            alert("erro")
         });
-    }, [])
+    }
 
-    console.log(data)
+    useEffect(renderToday, []);
+    const habitsDone = data.filter((e) => e.done);
 
     return (
         <>
             <Top/>
             <Container>
                 <Date>{`${dayjs().locale('pt-br').format("dddd")}, ${dayjs().format("D")}/${dayjs().format("MM")}`}</Date>
-                <Status><p>Nenhum hábito concluído ainda</p></Status>
-                {data.length > 0 ? data.map((data) => <HabitSituation key={data.id} data={data}/>) : ""}
+                <Status color={habitsDone.length > 0 ? "#8FC549" : "#BABABA"}>
+                    <p>{habitsDone.length > 0 ? `${(habitsDone.length/data.length*100).toFixed(0)}% dos hábitos concluídos` : "Nenhum hábito concluído ainda"}</p>
+                </Status>
+                {data.length > 0 ? data.map((data) => <HabitSituation key={data.id} data={data} renderToday={renderToday}/>) : ""}
             </Container>
-            <Footer />
+            <Footer valor={(habitsDone.length/data.length*100).toFixed(0)}/>
 
         </>
     );
@@ -62,7 +60,7 @@ const Date = styled.h2`
 `;
 
 const Status = styled.div`
-    color: #BABABA;
+    color: ${props => props.color};
     font-size: 18px;
     margin-bottom: 28px;
 `;
