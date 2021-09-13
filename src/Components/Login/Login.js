@@ -14,6 +14,16 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const {user, setUser} = useContext(UserContext);
     
+    function loadLogin() {
+
+        const data = localStorage.getItem("userInfo");
+        if(data) {
+            setUser(JSON.parse(data));
+            console.log("existe: ",data);
+            history.push("/hoje");
+        }
+    }
+    
     function Acess(event) {
         
         event.preventDefault();
@@ -25,13 +35,18 @@ export default function Login() {
 
         getLogin(body).then((resp) => {
             setUser(resp.data);
+            const data = JSON.stringify(resp.data);
+            localStorage.setItem("userInfo", data);
             history.push("/hoje");
         }).catch((resp) => {
             alert("Dados inválidos");
             setLoading(false);
         });
     }
-    
+    //localStorage.clear()
+
+    loadLogin();
+
     return (
         <Form onSubmit={Acess}>
             <LogoImg src={Logo} alt="Logo"/>

@@ -30,9 +30,6 @@ export default function Register() {
             alert("Erro tente novamente");
             setLoading(false);
         });
-
-
-        console.log(body)
     }
 
     return (

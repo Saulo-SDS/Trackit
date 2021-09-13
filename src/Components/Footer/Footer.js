@@ -9,10 +9,11 @@ import styled from "styled-components";
 export default function Footer({valor}) {
     
     const history = useHistory();
+    function aa() {console.log("clicando")}
     return (
         <FooterComponent>
             <p onClick={() => history.push("/habitos")}>Hábitos</p>
-            <InfoProgress>
+            <InfoProgress onClick={() => history.push("/hoje")}>
                <CircularProgressbar
                     value={valor}
                     text={`Hoje`}
@@ -23,7 +24,8 @@ export default function Footer({valor}) {
                         textColor: "#fff",
                         pathColor: "#fff",
                         trailColor: "transparent"
-                })}/>           
+                    })}
+                />           
             </InfoProgress>
            
             <p>Histórico</p>

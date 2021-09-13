@@ -40,7 +40,7 @@ export default function Habits() {
                 {data.length > 0 ? data.map(({id, name, days}, index) => ( <Habit key={id} id={id} name={name} selectedDays={days} loadHabits={loadHabits}/>)) :
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}       
             </Container>
-            <Footer />
+            <Footer valor={66}/>
         </>
     );
 };
