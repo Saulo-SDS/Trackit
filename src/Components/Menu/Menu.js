@@ -6,16 +6,15 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useHistory } from "react-router";
 import styled from "styled-components";
 
-export default function Footer({valor}) {
+export default function Menu({value}) {
     
     const history = useHistory();
-    function aa() {console.log("clicando")}
     return (
-        <FooterComponent>
+        <MenuComponent>
             <p onClick={() => history.push("/habitos")}>Hábitos</p>
             <InfoProgress onClick={() => history.push("/hoje")}>
                <CircularProgressbar
-                    value={valor}
+                    value={value}
                     text={`Hoje`}
                     background
                     backgroundPadding={6}
@@ -28,12 +27,12 @@ export default function Footer({valor}) {
                 />           
             </InfoProgress>
            
-            <p>Histórico</p>
-        </FooterComponent>
+            <p onClick={() => history.push("/historico")}>Histórico</p>
+        </MenuComponent>
     );
 }
 
-const FooterComponent = styled.div`
+const MenuComponent = styled.div`
     width: 100%;
     height: 70px;
     display: flex;

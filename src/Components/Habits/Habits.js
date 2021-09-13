@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Top from "../Top/Top";
-import Footer from "../Footer/Footer";
+import Top from "../Today/Top/Top";
+import Menu from "../Menu/Menu";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../Context/UserContext";
 import { getHabits } from "../Service/Api";
@@ -40,7 +40,7 @@ export default function Habits() {
                 {data.length > 0 ? data.map(({id, name, days}, index) => ( <Habit key={id} id={id} name={name} selectedDays={days} loadHabits={loadHabits}/>)) :
                 <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>}       
             </Container>
-            <Footer valor={66}/>
+            <Menu value={66}/>
         </>
     );
 };
